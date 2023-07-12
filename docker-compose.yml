@@ -1,0 +1,22 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    container_name: my_mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/db
+    env_file:
+      - .env
+
+  mongo-import:
+    image: mongo
+    container_name: mongo_import
+    volumes:
+      - ./data:/data
+    command: >
+      bash -c "sleep 10 &&
+               mongoimport --host mongodb --db $MONGO_DATABASE --collection $MONGO_COLLECTION --file /data/verzeichnis.json --jsonArray"
+    depends_on:
+      - mongodb

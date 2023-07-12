@@ -1,0 +1,13 @@
+html 
+    head 
+        link(rel="stylesheet", href="../style.css")
+        title Thomas the King
+    body 
+        .body
+            h1 Daten 
+            each land in data 
+                h2 #{land.name}
+                div Gold: #{land.gold}
+                div Silber: #{land.silber}
+                div Bronze: #{land.bronze}
+                div Gesamt: #{land.gesamt}
